@@ -1,5 +1,5 @@
 function getComputerChoice() {
-  const choices = ['rock', 'paper', 'scissor'];
+  const choices = ['rock', 'paper', 'scissors'];
   const randomChoice = Math.floor(Math.random() * 3);
 
   return choices[randomChoice];
@@ -12,11 +12,11 @@ function playRound(playerSelection, computerSelection) {
     return "It's a Tie! Try again!";
   }
 
-  if (playerSelection === 'rock' && computerSelection === 'scissor') {
+  if (playerSelection === 'rock' && computerSelection === 'scissors') {
     playerWins = true;
   } else if (playerSelection === 'paper' && computerSelection === 'rock') {
     playerWins = true;
-  } else if (playerSelection === 'scissor' && computerSelection === 'paper') {
+  } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
     playerWins = true;
   }
 
@@ -29,7 +29,7 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
   for (let round = 0; round < 5; round++) {
-    let playerSelection = prompt("Enter your choice! Rock, Paper or Scissor?").toLowerCase();
+    let playerSelection = prompt("Enter your choice! Rock, Paper or Scissors?").toLowerCase();
 
     const computerSelection = getComputerChoice();
     console.log(playRound(playerSelection, computerSelection));
