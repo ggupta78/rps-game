@@ -42,8 +42,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.75rem;
   margin-bottom: 50px;
 }
 
 .score {
+  font-size: 1.75rem;
+  margin-bottom: 50px;
+  min-width: 275px;
+}
+
+.message {
+  font-size: 2rem;
 }
