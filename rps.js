@@ -7,35 +7,45 @@ let currentRound = 1, maxWins = 3;
 let playerWinCount = 0, computerWinCount = 0;
 let gameOver = false;
 
-function handleBtnClick() {
-  if (gameOver) {
-    currentRound = 1;
-    playerWinCount = computerWinCount = 0;
-    gameOver = false;
+function resetGame() {
+  currentRound = 1;
+  playerWinCount = computerWinCount = 0;
+  gameOver = false;
+}
+
+function getFinalWinner() {
+  if (playerWinCount === maxWins) {
+    return `You won ${maxWins} rounds! You are the Champion!!`;
+  } else {
+    return `Computer won ${maxWins} rounds! Computer is the Champion!!`;
   }
+}
 
-  console.log(`${this.name}`);
-  const playerSelection = this.name;
-  const computerSelection = getComputerChoice();
-  const result = playRound(playerSelection, computerSelection);
+function displayResult(result) {
   score.innerHTML = `You: ${playerWinCount}, Computer: ${computerWinCount}`;
-
-  currentRound++;
 
   if (playerWinCount === maxWins || computerWinCount === maxWins) {
     gameOver = true;
-    let finalWinner = "";
-    if (playerWinCount === maxWins) {
-      finalWinner = `You won ${maxWins} rounds! You are the Champion!!`;
-    } else {
-      finalWinner = `Computer won ${maxWins} rounds! Computer is the Champion!!`;
-    }
-    message.innerHTML = finalWinner;
+    message.innerHTML = getFinalWinner();
   } else {
     message.innerHTML = result;
   }
 
+  currentRound++;
   rounds.innerHTML = `Round ${currentRound}`;
+}
+
+function handleBtnClick() {
+  if (gameOver) {
+    resetGame();
+  }
+  //Get choices
+  const playerSelection = this.name;
+  const computerSelection = getComputerChoice();
+  //Play round
+  const result = playRound(playerSelection, computerSelection);
+  //Display result
+  displayResult(result);
 };
 
 allInputs.forEach(input => {
@@ -74,14 +84,3 @@ function playRound(playerSelection, computerSelection) {
     return `You Lose! ${computerSelection} beats ${playerSelection}`;
   }
 }
-
-function game() {
-  for (let round = 0; round < 5; round++) {
-    let playerSelection = prompt("Enter your choice! Rock, Paper or Scissors?").toLowerCase();
-
-    const computerSelection = getComputerChoice();
-    console.log(playRound(playerSelection, computerSelection));
-  }
-}
-
-//game();
